@@ -22,13 +22,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   const contentHtml = processedContent.toString();
 
   return (
-    <div className="flex justify-center text-neutral-400">
+    <div className="flex justify-center text-ctp-subtext0">
       <div className="max-w-2xl w-full pt-10 pb-10">
-        <h1 className="text-2xl font-bold text-neutral-300 mb-6">
+        <h1 className="text-2xl font-bold text-ctp-text mb-6">
           {data.title || slug}
         </h1>
         <article
-          className=" leading-relaxed space-y-6 text-neutral-300"
+          className=" leading-relaxed space-y-6 text-ctp-text"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
       </div>
