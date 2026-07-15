@@ -2,12 +2,11 @@ export default function Home() {
   return (
     <>
       <div className="text-ctp-subtext0 flex justify-center">
-
-        <div>
-          <div className="max-w-2xl leading-relaxed space-y-6 pb-4 pt-4 text-lg text-ctp-text">
+        <div className="max-w-2xl w-full pt-4 pb-10">
+          <div className="leading-relaxed space-y-6 pb-4 text-lg text-ctp-text">
             <strong>Ciro - 19y - Colombia</strong>
           </div>
-          <div className="max-w-2xl  text-sm leading-relaxed space-y-6">
+          <div className="text-sm leading-relaxed space-y-6">
             <p>
               I’m a second-year <strong className='text-ctp-text'>Computer Science</strong> student at the University of Calgary, with strong interests in <strong className='text-ctp-text'>database systems</strong>,
               <strong className='text-ctp-text'> low-level programming</strong>, and <strong className='text-ctp-text'>infrastructure</strong>. I value <strong className='text-ctp-text'>simplicity</strong>, <strong className='text-ctp-text'>performance</strong>, and <strong className='text-ctp-text'>reliability</strong>.
@@ -39,7 +38,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
     </>
   );
 }

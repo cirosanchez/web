@@ -5,8 +5,8 @@ export default function Navbar() {
         <>
             <div className="flex justify-between p-4 border-b-1 border-ctp-surface0">
                 { /* Left hand side */ }
-                <div className="hover:underline">
-                    <Link href="/">Ciro</Link>
+                <div className="hover:underline text-ctp-mauve font-semibold">
+                    <Link href="/">\ciro</Link>
                 </div>
 
                 { /* Right hand side */ }
