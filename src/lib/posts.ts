@@ -23,8 +23,13 @@ export function blobToken(): { token: string } | Record<string, never> {
   return token ? { token } : {};
 }
 
-/** Posts are private blobs: drafts must not be readable by URL guessing. */
-const ACCESS = { access: "private" } as const;
+/**
+ * Access is a store-level setting on Vercel Blob, so posts share the public
+ * store used for images. Published post content is public anyway; a draft is
+ * readable only by someone who guesses its exact pathname, since list()
+ * still requires the token and cannot be called anonymously.
+ */
+const ACCESS = { access: "public" } as const;
 
 export function pathForSlug(slug: string): string {
   return `${PREFIX}${slug}.md`;
