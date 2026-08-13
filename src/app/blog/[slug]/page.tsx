@@ -1,36 +1,32 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
+import { notFound } from "next/navigation";
+import { getPost, listPosts } from "@/lib/posts";
+import { renderMarkdown } from "@/lib/markdown";
+import PostContent from "@/components/post-content";
 
 export async function generateStaticParams() {
-  const postsDir = path.join(process.cwd(), "src/posts");
-  const files = fs.readdirSync(postsDir);
-  return files.map((file) => ({
-    slug: file.replace(/\.md$/, ""),
-  }));
+  const posts = await listPosts({ includeDrafts: true });
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
-export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-  const filePath = path.join(process.cwd(), "src/posts", `${slug}.md`);
-  const fileContent = fs.readFileSync(filePath, "utf8");
-  const { content, data } = matter(fileContent);
+  const post = await getPost(slug);
 
-  const processedContent = await remark().use(html).process(content);
-  const contentHtml = processedContent.toString();
+  if (!post) notFound();
+
+  const contentHtml = await renderMarkdown(post.content);
 
   return (
-    <div className="flex justify-center text-ctp-subtext0">
+    <div className="flex justify-center text-neutral-400">
       <div className="max-w-2xl w-full pt-10 pb-10">
-        <h1 className="text-2xl font-bold text-ctp-text mb-6">
-          {data.title || slug}
+        <h1 className="text-2xl font-bold text-neutral-300 mb-6">
+          {post.title}
         </h1>
-        <article
-          className=" leading-relaxed space-y-6 text-ctp-text"
-          dangerouslySetInnerHTML={{ __html: contentHtml }}
-        />
+        <PostContent html={contentHtml} />
       </div>
     </div>
   );

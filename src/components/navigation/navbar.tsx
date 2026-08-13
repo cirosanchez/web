@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function Navbar() {
     return (
         <>
-            <div className="flex justify-between p-4 border-b-1 border-ctp-surface0">
+            <div className="flex justify-between p-4 border-b-1 border-white">
                 { /* Left hand side */ }
-                <div className="hover:underline text-ctp-mauve font-semibold">
+                <div className="hover:underline font-semibold">
                     <Link href="/">\ciro</Link>
                 </div>
 
